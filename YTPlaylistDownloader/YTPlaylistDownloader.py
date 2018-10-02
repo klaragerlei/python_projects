@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+# To use this code, you have to execute it from a bash environment and have an up-to-date youtube-dl installation. 
+
 from threading import Thread
 import subprocess
 from copy import copy
