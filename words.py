@@ -1,24 +1,21 @@
 #!/usr/bin/env python3
 """Retrieve and print words from a URL.
-
 Tools to read a UTF-8 text document from a URL which
 will be split into its component words for printing.
-
 Script usage:
-
-   python3 words.py <URL>
+   python3 words.py
 """
 
-import sys
-from urllib.request import urlopen
 
+
+import sys
+from urllib.request import Request,urlopen
+from urllib.error import URLError, HTTPError
 
 def fetch_words(url):
     """Fetch a list of words from a URL.
-
     Args:
         url: The URL of a UTF-8 text document.
-
     Returns:
         A list of strings containing the words from
         the document.
@@ -35,17 +32,15 @@ def fetch_words(url):
 
 def print_items(items):
     """Print items one per line.
-
     Args:
         An iterable series of printable items.
     """
     for item in items:
-    	print(item)
+        print(item)
 
 
 def main(url):
     """Print each word from a text document from at a URL.
-
     Args:
         url: The URL of a UTF-8 text document.
     """
@@ -54,4 +49,17 @@ def main(url):
 
 
 if __name__ == '__main__':
-    main(sys.argv[1])  # The 0th arg is the module filename.
+  url = input('Please enter a valid URL.')
+
+  try:
+    req = Request(url)
+    response = urlopen(req)
+  except URLError as e:
+    if hasattr(e, 'reason'):
+      print ('I failed to reach a server.')
+      print ('Reason: ', e.reason)
+    elif hasattr(e, 'code'):
+      print ('The server couldn\'t fulfill the request.')
+      print ('Error code: ', e.code)
+  else:
+      main(req)  # The 0th arg is the module filename.
