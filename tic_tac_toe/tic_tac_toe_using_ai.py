@@ -1,7 +1,17 @@
+"""Tic Tac Toe game between the player and an AI.
+Please note that this game only runs using version Python 2.x versions.
+Version 3.x library does not support some of these methods used.
+"""
+
 import random
 
 
 class TicTacToe(object):
+	"""Tic Tac Toe object to create a board and game status detection.
+	
+	Attributes:
+		board: An array signifying the size of the tic-tac-toe board.
+	"""
     winning_combos = (
         [0, 1, 2], [3, 4, 5], [6, 7, 8],
         [0, 3, 6], [1, 4, 7], [2, 5, 8],
@@ -154,6 +164,8 @@ if __name__ == "__main__":
             " | " + str(i * 3 + 3) + " |"
         )
     print('Type in the position number you to make a move on..')
+	
+	# While loop that checks between user input and AI determinstic move.
     while not board.check_game_over():
         player = 'X'
         player_move = int(input("Your Move: ")) - 1
