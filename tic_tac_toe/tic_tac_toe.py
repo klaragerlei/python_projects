@@ -1,5 +1,10 @@
-def print_board(board):
+"""Tic Tac Toe game between two players
+Please note that this game only runs using version Python 2.x versions.
+This game is played using the command prompt
+"""
 
+def print_board(board):
+	"""Print a 3 by 3 board"""
 	print "The board look like this: \n"
 
 	for i in range(3):
@@ -24,12 +29,13 @@ def print_board(board):
 			print 
 			
 def print_instruction():
+	"""Print an example layout of the board for the user"""
 	print "Please use the following cell numbers to make your move"
-	print_board([2,3,4,5,6,7,8,9,10])
+	print_board([1,2,3,4,5,6,7,8,9])
 
 
 def get_input(turn):
-
+	"""Attain user input and check for valid input"""
 	valid = False
 	while not valid:
 		try:
@@ -44,6 +50,7 @@ def get_input(turn):
 			print user + " is not a valid move! Please try again.\n"
 		
 def check_win(board):
+	"""Scan the board and check if a winning pattern has been attained"""
 	win_cond = ((1,2,3),(4,5,6),(7,8,9),(1,4,7),(2,5,8),(3,6,9),(1,5,9),(3,5,7))
 	for each in win_cond:
 		try:
@@ -54,12 +61,13 @@ def check_win(board):
 	return -1
 
 def quit_game(board,msg):
+	"""Quit out of game"""
 	print_board(board)
 	print msg
 	quit()
 
 def main():
-	
+	"""Main function to run the game and environment for the user"""
 	# setup game
 	# alternate turns
 	# check if win or end
@@ -68,13 +76,14 @@ def main():
 	print_instruction()
 
 	board = []
+	# set the board with a null value
 	for i in range(9):
 		board.append(-1)
 
 	win = False
 	move = 0
 	while not win:
-
+	
 		# print board
 		print_board(board)
 		print "Turn number " + str(move+1)
